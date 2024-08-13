@@ -8,13 +8,12 @@
 <body>
     <!-- Cabeçalho -->
     <header>
-        <h1>Cadastro de usuários</h1>
+        <h1>Cadastro de Usuários</h1>
     </header>
     
     <!-- Menu de Navegação -->
     <nav>
-         <nav>
-        <a href="index.html">Página inicial</a>
+        <a href="index.html">Página Inicial</a>
         <a href="detalhes.html">Detalhes</a>
         <a href="sobre.html">Sobre</a>
         <a href="login.html">Login</a>
@@ -23,57 +22,65 @@
     
     <!-- Conteúdo -->
     <main>
-        <!-- Página de Cadastro do Objeto Tema -->
-        <section id="cadastro-tema">
-            <h2>Area de cadastro</h2>
+        <!-- Página de Cadastro de Usuários -->
+        <section id="cadastro-usuario">
+            <h2>Área de Cadastro</h2>
             <!-- Formulário de cadastro/edição -->
             <form>
-				<div>
-					<label for="titulo">Usuario:</label>
-					<input type="text" id="titulo" name="titulo">
-				</div>
-				<div>
-					<label for="autor">Senha</label>
-					<input type="text" id="autor" name="autor">
-				</div>
-				<button type="submit">Cadastrar</button>
-                <!-- Tabela com lista dos objetos cadastrados -->
+                <div>
+                    <label for="usuario">Usuário:</label>
+                    <input type="text" id="usuario" name="usuario" required>
+                </div>
+                <div>
+                    <label for="senha">Senha:</label>
+                    <input type="password" id="senha" name="senha" required>
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <button type="submit">Cadastrar</button>
+            </form>
+        </section>
+
+        <!-- Tabela com lista dos usuários cadastrados -->
+        <section id="lista-usuarios">
+            <h2>Lista de Usuários Cadastrados</h2>
             <table>
                 <thead>
                     <tr>
-                        <th>Usuarios</th>
+                        <th>Usuário</th>
+                        <th>Email</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>Nome 1</td>
+                        <td>nome1@example.com</td>
                         <td>
                             <button>Editar</button>
                             <button>Apagar</button>
                         </td>
                     </tr>
-                </thead>
-                <tbody>
                     <tr>
                         <td>Nome 2</td>
+                        <td>nome2@example.com</td>
                         <td>
                             <button>Editar</button>
                             <button>Apagar</button>
                         </td>
                     </tr>
-                    <!-- Ad
-                    <!-- Adicione mais linhas para outros temas cadastrados -->
+                    <!-- Adicione mais linhas para outros usuários cadastrados -->
                 </tbody>
             </table>
         </section>
-            
     </main>
     
     <!-- Rodapé -->
     <footer>
         <p><a href="sobre.html">Sobre o Autor</a></p>
-	Copyright 2024 Marcio
+        <p>&copy; 2024 Marcio</p>
     </footer>
 </body>
 </html>
