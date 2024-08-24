@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orçamento Pessoal</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Controle de Orçamento Pessoal</h1>
+
+    <h2>Despesas</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Data</th>
+                <th>Descrição</th>
+                <th>Valor</th>
+                <th>Categoria</th>
+            </tr>
+        </thead>
+        <tbody id="despesas-body">
+            <!-- Linhas de despesas serão inseridas aqui -->
+        </tbody>
+    </table>
+
+    <h2>Resumo por Categoria</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Categoria</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody id="resumo-body">
+            <tr>
+                <td>Energia</td>
+                <td id="total-energia">0</td>
+            </tr>
+            <tr>
+                <td>Água</td>
+                <td id="total-agua">0</td>
+            </tr>
+            <tr>
+                <td>Telecomunicações</td>
+                <td id="total-telecomunicacoes">0</td>
+            </tr>
+            <tr>
+                <td>Impostos</td>
+                <td id="total-impostos">0</td>
+            </tr>
+            <tr>
+                <td>Educação</td>
+                <td id="total-educacao">0</td>
+            </tr>
+            <tr>
+                <td>Alimentação</td>
+                <td id="total-alimentacao">0</td>
+            </tr>
+            <tr>
+                <td>Transporte</td>
+                <td id="total-transporte">0</td>
+            </tr>
+            <tr>
+                <td>Lazer</td>
+                <td id="total-lazer">0</td>
+            </tr>
+            <tr>
+                <td>Saúde</td>
+                <td id="total-saude">0</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Gráfico de Despesas por Categoria</h2>
+    <canvas id="grafico-despesas" width="400" height="400"></canvas>
+
+    <script>
+        // Exemplo de dados de despesas
+        const despesas = [
+            { data: "01/08/2024", descricao: "Conta de luz", valor: 120, categoria: "Energia" },
+            { data: "03/08/2024", descricao: "Conta de água", valor: 80, categoria: "Água" },
+            { data: "05/08/2024", descricao: "Internet", valor: 100, categoria: "Telecomunicações" },
+            { data: "10/08/2024", descricao: "Mensalidade escolar", valor: 500, categoria: "Educação" },
+            { data: "15/08/2024", descricao: "Supermercado", valor: 300, categoria: "Alimentação" },
+            { data: "20/08/2024", descricao: "Gasolina", valor: 150, categoria: "Transporte" },
+            { data: "22/08/2024", descricao: "Cinema", valor: 50, categoria: "Lazer" },
+            { data: "25/08/2024", descricao: "Consulta médica", valor: 200, categoria: "Saúde" }
+        ];
+
+        // Função para atualizar a tabela de despesas e o resumo por categoria
+        function atualizarDespesas() {
+            const tbody = document.getElementById('despesas-body');
+            const resumo = {
+                Energia: 0,
+                Água: 0,
+                Telecomunicações: 0,
+                Impostos: 0,
+                Educação: 0,
+                Alimentação: 0,
+                Transporte: 0,
+                Lazer: 0,
+                Saúde: 0
+            };
+
+            // Limpa as tabelas antes de adicionar novos dados
+            tbody.innerHTML = '';
+
+            // Popula a tabela de despesas e acumula os totais por categoria
+            despesas.forEach(despesa => {
+                const row = document.createElement('tr');
+                row.innerHTML = `<td>${despesa.data}</td><td>${despesa.descricao}</td><td>${despesa.valor}</td><td>${despesa.categoria}</td>`;
+                tbody.appendChild(row);
+
+                resumo[despesa.categoria] += despesa.valor;
+            });
+
+            // Atualiza a tabela de resumo por categoria
+            Object.keys(resumo).forEach(categoria => {
+                document.getElementById(`total-${categoria.toLowerCase()}`).textContent = resumo[categoria];
+            });
+
+            // Atualiza o gráfico de despesas
+            atualizarGrafico(resumo);
+        }
+
+        // Função para atualizar o gráfico de pizza
+        function atualizarGrafico(resumo) {
+            const ctx = document.getElementById('grafico-despesas').getContext('2d');
+            const data = {
+                labels: Object.keys(resumo),
+                datasets: [{
+                    data: Object.values(resumo),
+                    backgroundColor: [
+                        '#FF6384',
+                        '#36A2EB',
+                        '#FFCE56',
+                        '#FF9F40',
+                        '#4BC0C0',
+                        '#9966FF',
+                        '#FFCD56',
+                        '#FF6384',
+                        '#4BC0C0'
+                    ]
+                }]
+            };
+            new Chart(ctx, {
+                type: 'pie',
+                data: data
+            });
+        }
+
+        // Carrega as despesas e o resumo ao abrir a página
+        document.addEventListener('DOMContentLoaded', atualizarDespesas);
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</body>
+</html>
