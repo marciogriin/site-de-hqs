@@ -1,0 +1,19 @@
+:root {
+    --background-color: #34c10e;
+    --font-family-base: 'Arial', sans-serif;
+    --font-weight-bold;
+    --line-height-base;
+
+}
+body {
+    background-color: var(--background-color);
+    margin: 20px;
+}
+h1 h2 h3{
+    color: blue;
+    text-align:center;
+    font-family: var(--font-family-base);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-base);
+
+}
