@@ -1,84 +1,94 @@
-/*:root {
-    --background-color: #34c10e;
-    --font-family-base: 'Arial', sans-serif;
-    --font-weight-bold;
-    --line-height-base;
-
-}
 body {
-    background-color: var(--background-color);
-    margin: 20px;
-}
-h1 h2 h3{
-    color: blue;
-    text-align:center;
-    font-family: var(--font-family-base);
-    font-weight: var(--font-weight-bold);
-    line-height: var(--line-height-base);
-
-}
-.objeto {
-    display: inline-block;
-    width: 300px;
-
-    img{
-        width: 100%;
-    }
-  }*/
-  :root {
-    --background-color: #34c10e;
-    --font-family-base: 'Arial', sans-serif;
-    --font-weight-bold: bold;
-    --line-height-base: 1.5;
-    --menu-bg-color: #222;
-    --menu-link-color: #fff;
-    --menu-link-hover-color: #34c10e;
+    margin: 0;
+    font-family: Arial, sans-serif;
 }
 
-body {
-    background-color: var(--background-color);
-    margin: 20px;
-    font-family: var(--font-family-base);
-}
-
-h1, h2, h3 {
-    color: blue;
+header {
     text-align: center;
-    font-weight: var(--font-weight-bold);
-    line-height: var(--line-height-base);
+    background-color: #f8f8f8;
+    padding: 20px;
 }
 
-/* Menu de navegação na vertical */
+input[type="checkbox"] {
+    display: none; /* Esconde o checkbox */
+}
+
 nav {
-    width: 200px;
-    background-color: var(--menu-bg-color);
-    position: fixed;
+    background-color: #333;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    position: absolute; /* Torna o menu absoluto */
     top: 0;
     left: 0;
-    height: 100%;
-    padding-top: 20px;
+    width: 100%;
+    z-index: 1000;
+    display: none; /* Inicialmente escondido */
 }
 
 nav a {
-    display: block;
-    color: var(--menu-link-color);
-    padding: 10px;
+    color: white;
     text-decoration: none;
+    padding: 10px;
 }
 
-nav a:hover {
-    background-color: var(--menu-link-hover-color);
+.material-icons {
+    cursor: pointer;
+    padding: 10px;
+    position: fixed; /* Fixa o ícone na tela */
+    top: 10px;
+    right: 10px;
+    z-index: 1001; /* Para ficar acima do menu */
 }
 
-/* Objeto tema em 2 ou mais colunas */
+#menu-toggle:checked + nav {
+    display: flex; /* Mostra o menu quando checkbox está checado */
+}
+
+#menu-toggle:checked + nav + #open-menu {
+    display: none; /* Esconde o botão de abrir menu quando menu está aberto */
+}
+
+#menu-toggle:not(:checked) + nav + #open-menu {
+    display: block; /* Mostra o botão de abrir menu quando menu está fechado */
+}
+
+.main {
+    padding: 20px;
+}
+
 .objetos-tema {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    margin-left: 220px; /* Espaço para o menu fixo */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Espaçamento entre os objetos */
 }
 
-.objeto img {
+.objeto {
+    flex: 1 1 calc(50% - 20px); /* 2 colunas */
+    max-width: calc(50% - 20px); /* 2 colunas */
+}
+
+img {
     width: 100%;
+    height: auto;
 }
 
+@media (max-width: 768px) {
+    .objetos-tema {
+        flex-direction: column; /* Empilha os objetos em telas pequenas */
+    }
+
+    .objeto {
+        flex: 1 1 100%; /* Cada objeto ocupa 100% da largura */
+    }
+}
+
+@media print {
+    nav {
+        display: none; /* Esconde o menu na impressão */
+    }
+
+    .material-icons {
+        display: none; /* Esconde os ícones do menu na impressão */
+    }
+}

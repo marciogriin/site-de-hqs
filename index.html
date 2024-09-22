@@ -1,39 +1,38 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<html>
-   <head>
-      <title>HQs Brasileiras</title>
-      <meta charset="utf-8" />
-      <link rel="stylesheet" href="css/styles.css">
-   </head>
+<head>
+    <title>HQs Brasileiras</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
 <body>
-   <header id="pagina_inicial">
-
+    <header id="pagina_inicial">
         <h1>HQs Brasileiras Independentes</h1>
-
     </header>
 
-    <nav>
+    <input type="checkbox" id="menu-toggle" class="hidden">
+    <nav id="menu">
+        <label for="menu-toggle" class="material-icons" id="close-menu">close</label>
         <a href="index.html">Página inicial</a>
         <a href="detalhes.html">Detalhes</a>
         <a href="sobre.html">Sobre</a>
         <a href="login.html">Login</a>
         <a href="adm/hqs.html">Admin Hqs</a>
         <a href="adm/usuarios.html">Admin Usuários</a>
-        <a href="index2.html">Layout 2</a> <!-- Novo link para a segunda página com estilo diferente -->
-        
+        <a href="index2.html">Layout 2</a>
     </nav>
+
+    <label for="menu-toggle" class="material-icons" id="open-menu">menu</label>
 
     <!-- Conteúdo principal -->
     <main>
-        <!-- Página inicial -->
         <section id="pagina-inicial">
             <h2>Página Inicial</h2>
             <div class="objetos-tema">
-                <!-- Lista de objetos tema com dados relevantes -->
                 <div class="objeto">
                     <h3>Jovem Adulto - Gabriel Lage</h3>
-                    <a href="detalhes.html"><img src="https://i.zst.com.br/thumbs/12/5/31/1458386571.jpg" alt="Imagem HQ Jovem adulto" class="media-object  img-responsive img-thumbnail"></a>
+                    <a href="detalhes.html"><img src="https://i.zst.com.br/thumbs/12/5/31/1458386571.jpg" alt="Imagem HQ Jovem adulto" class="media-object img-responsive img-thumbnail"></a>
                 </div>
                 <div class="objeto">
                     <h3>Ângulo de vista - Rafael Fritzen</h3>
@@ -47,7 +46,6 @@
                     <h3>As crônicas de Wesley - Wesley</h3>
                     <img src="https://img.skoob.com.br/ishjwUhxj-5dQq1dVMrguV5c7oI=/600x0/center/top/filters:format(jpeg)/https://skoob.s3.amazonaws.com/livros/1015957/AS_CRONICAS_DE_WESLEY_A1_16001980841015957SK1600198086B.jpg" alt="Imagem HQ As crônicas de Wesley">
                 </div>
-                <!-- Adicionar mais objetos conforme necessário -->
             </div>
         </section>
     </main>
@@ -55,9 +53,7 @@
     <footer>
         <p><a href="sobre.html">Sobre o Autor</a></p>
         Copyright 2024 Marcio
-
     </footer>
 
 </body>
-
 </html>
